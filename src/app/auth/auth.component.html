@@ -1,0 +1,43 @@
+<div class="container-fluid bg-light py-3">
+  <div class="row">
+      <div class="col-md-6 mx-auto">
+              <div class="card card-body">
+                  <h3 class="text-center mb-4">{{title}}</h3>                 
+                  <form [formGroup]="authForm" novalidate (ngSubmit)="onSubmit()"> 
+                    <fieldset>
+                      <div class="form-group has-error">
+                          <input class="form-control input-lg" placeholder="E-mail Address" formControlName="email" name="email" type="text">
+                          <div *ngIf="authForm.controls.email.invalid && authForm.controls.email.touched" class="alert alert-danger">
+                            Email is required.
+                        </div>
+                      </div>
+                      <div class="form-group has-success">
+                          <input class="form-control input-lg" placeholder="Password" name="password" formControlName = "password" value="" type="password">
+                          <div *ngIf="authForm.controls.password.invalid && authForm.controls.password.touched" class="alert alert-danger">
+                            Password is required.
+                        </div>
+                      </div>                                         
+                      <input class="btn btn-lg btn-primary btn-block" [disabled]="!authForm.valid" value="{{title}}" type="submit">
+                   <p class="text-center mt-2"> <a [routerLink]="['/forgot-password']" (click)="forgotPassword()">Forgot Password</a></p>
+                     
+                     <div class ="social-container">
+                       <a href="http://localhost:3000/api/auth/google" class="btn btn-secondary social-buttons" ><i class="fa fa-google mr-2"></i>Login with Google</a>
+                      <a href="http://localhost:3000/api/auth/twitter" class="btn btn-info social-buttons" ><i class="fa fa-twitter mr-2"></i>Login with Twitter</a>
+                      <a href="http://localhost:3000/api/auth/github" class="btn btn-warning social-buttons" ><i class="fa fa-github mr-2"></i>Login with Github</a>
+                    </div>
+                  </fieldset>
+
+                  <div class="alternative">
+                    <p *ngIf="title ==='Login'" class="text-center mt-3">Not a member?
+                      <a [routerLink]="['/signup']">Register</a>
+                  </p> 
+                  <p *ngIf="title ==='Signup'" class="text-center mt-3">Already have an account?
+                    <a [routerLink]="['/login']">Login</a>
+                </p> 
+                  </div>
+                  
+                  </form>                  
+              </div>  
+      </div>
+  </div>
+</div>
